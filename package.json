@@ -5,9 +5,12 @@
   "scripts": {
     "compile": "hardhat compile",
     "lint": "hardhat check",
+    "prettier:check": "prettier --check --plugin=prettier-plugin-solidity 'contracts/**/*.sol'",
     "prettier": "prettier --write --plugin=prettier-plugin-solidity 'contracts/**/*.sol'",
-    "deploy:local": "hardhat ignition deploy ignition/modules/GalxeTokenG.ts --network localhost --strategy create2",
-    "test": "REPORT_GAS=true hardhat test"
+    "test": "hardhat test --parallel",
+    "test:report-gas": "REPORT_GAS=true hardhat test",
+    "coverage": "hardhat coverage",
+    "deploy:local": "hardhat ignition deploy ignition/modules/GalxeTokenG.ts --network localhost --strategy create2"
   },
   "author": "Galxe team",
   "license": "MIT",
