@@ -23,6 +23,21 @@ contract TokenUpgrader is Ownable2Step {
 
     constructor(address initialAdmin) Ownable(initialAdmin) {}
 
+    /// Withdraw ERC20 token from the contract
+    /// @param token the address of the token to withdraw
+    /// @param to the receiver of the token
+    /// @param amount the amount of token to withdraw
+    function withdrawERC20Token(address token, address to, uint256 amount) external onlyOwner {
+        IERC20(token).safeTransfer(to, amount);
+    }
+
+    /// Withdraw ETH from the contract
+    /// @param to address to receive the ETH
+    /// @param amount amount of ETH to withdraw
+    function withdrawETH(address to, uint256 amount) external onlyOwner {
+        payable(to).transfer(amount);
+    }
+
     /// initialize the contract with the old and new token addresses.
     /// @param oldTokenAddress The address of the old token contract
     /// @param newTokenAddress The address of the new token contract
