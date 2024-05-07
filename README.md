@@ -1,13 +1,12 @@
-# Sample Hardhat Project
+# Galxe G Token
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a Hardhat Ignition module that deploys that contract.
+This is the official repository for the Galxe G Token.
 
-Try running some of the following tasks:
+The Galxe G Token is a new token replacing the old token `GAL`, proposed in
+[GP25](https://dao.galxe.com/#/proposal/0x8d3f386c3b0cb9fa170d4231c65f18bd45ea1402b90a70116e1101c22e62ed01).
 
-```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat ignition deploy ./ignition/modules/Lock.ts
-```
+There are 3 contracts in this repository:
+
+- `GalxeTokenG.sol`: The main new ERC20 token contract, the G token, featuring a minter management role for making G a native cross-chain token.
+- `TokenUpgrader.sol`: A contract to upgrade the old GAL token to the new G token.
+- `TokenVesting.sol`: A simple token vesting contract.
