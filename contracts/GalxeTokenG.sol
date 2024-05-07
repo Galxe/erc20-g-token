@@ -18,7 +18,11 @@ import { LimitedMinter } from "./LimitedMinter.sol";
 /// - native cross-chain ERC20 by supporting limited minter management for bridges.
 /// @custom:security-contact security@galxe.com
 contract GalxeTokenG is ERC20, ERC20Burnable, ERC20Pausable, ERC20Permit, LimitedMinter, Ownable2Step {
-    constructor(address initialAdmin) ERC20("Galxe", "G") ERC20Permit("Galxe G Token") Ownable(initialAdmin) {}
+    string private _newName;
+
+    constructor(address initialAdmin) ERC20("Galxe", "G") ERC20Permit("Galxe G Token") Ownable(initialAdmin) {
+        _newName = super.name();
+    }
 
     function pause() public onlyOwner {
         _pause();
@@ -26,6 +30,15 @@ contract GalxeTokenG is ERC20, ERC20Burnable, ERC20Pausable, ERC20Permit, Limite
 
     function unpause() public onlyOwner {
         _unpause();
+    }
+
+    ///@dev Returns the name of the token.
+    function name() public view override returns (string memory) {
+        return _newName;
+    }
+
+    function setName(string memory newName) public onlyOwner {
+        _newName = newName;
     }
 
     /// ownerMint can only be called by the owner for initial token distribution
