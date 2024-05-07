@@ -3,6 +3,7 @@
 pragma solidity ^0.8.24;
 
 import { Ownable2Step, Ownable } from "@openzeppelin/contracts/access/Ownable2Step.sol";
+import { Pausable } from "@openzeppelin/contracts/utils/Pausable.sol";
 import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import { SafeERC20 } from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import { IERC20Permit } from "@openzeppelin/contracts/token/ERC20/extensions/IERC20Permit.sol";
@@ -10,7 +11,7 @@ import { IERC20Permit } from "@openzeppelin/contracts/token/ERC20/extensions/IER
 /// @title TokenUpgrader Contract for upgrading old tokens to new tokens
 /// @author Galxe Team
 /// @notice Customized for upgrading old tokens to new tokens, compatible with unburnable and no-permit tokens
-contract TokenUpgrader is Ownable2Step {
+contract TokenUpgrader is Ownable2Step, Pausable {
     using SafeERC20 for IERC20;
 
     error Uninitialized();
@@ -22,6 +23,14 @@ contract TokenUpgrader is Ownable2Step {
     uint256 public constant SPLIT_RATIO = 60;
 
     constructor(address initialAdmin) Ownable(initialAdmin) {}
+
+    function pause() public onlyOwner {
+        _pause();
+    }
+
+    function unpause() public onlyOwner {
+        _unpause();
+    }
 
     /// Withdraw ERC20 token from the contract
     /// @param token the address of the token to withdraw
@@ -53,7 +62,7 @@ contract TokenUpgrader is Ownable2Step {
     /// @notice upgrade old tokens to new tokens
     /// @dev msg.sender must approve the amount of old tokens to be upgraded before calling this function.
     /// @param amount The amount of old tokens to upgrade.
-    function upgradeToken(uint256 amount) external onlyInitialized returns (bool) {
+    function upgradeToken(uint256 amount) external onlyInitialized whenNotPaused returns (bool) {
         // compatible with unburnable tokens
         oldToken.safeTransferFrom(msg.sender, address(0), amount);
         newToken.safeTransfer(msg.sender, amount * SPLIT_RATIO);
@@ -72,7 +81,7 @@ contract TokenUpgrader is Ownable2Step {
         uint8 v,
         bytes32 r,
         bytes32 s
-    ) external onlyInitialized returns (bool) {
+    ) external onlyInitialized whenNotPaused returns (bool) {
         // permit signature front-run protection
         /* solhint-disable no-empty-blocks */
         try IERC20Permit(address(oldToken)).permit(msg.sender, address(this), amount, deadline, v, r, s) {} catch {}
