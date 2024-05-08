@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.8.4 <0.9.0;
 
-/// @title ILimitedMinter is a simplified version of IXERC20 with no lockbox and no permission to burn.
+/// @title ILimitedMinterManagerManager is a simplified version of IXERC20 with no lockbox and no permission to burn.
 /// This is for ERC20 tokens that can be bridged cross-chain natively.
 /// Minters can mint tokens for users, but only up to a certain limit per a period of time.
 /// Minters can be trusted bridges, or other contracts that need to mint tokens for users.
-interface ILimitedMinter {
+interface ILimitedMinterManager {
     /// @notice Emits when a limit is set
     /// @param _minter The address of the minter we are setting the limit too
     /// @param _mintingLimit The updated minting limit we are setting to the minter
@@ -18,15 +18,28 @@ interface ILimitedMinter {
     /// @param _amount The amount of tokens being minted
     event MinterMinted(address indexed _minter, address indexed _to, uint256 _amount);
 
+    /// @notice Emits when a minter is added
+    /// @param _minter The address of the minter we are adding
+    event MinterNewlyAdded(address indexed _minter);
+
+    /// @notice Emits when a minter is removed
+    /// @param _minter The address of the minter we are removing
+    event MinterRemoved(address indexed _minter);
+
     /// @notice Reverts when a user with too low of a limit tries to call mint
-    error ILimitedMinter_NotEnoughLimits();
+    error ILimitedMinterManager_NotEnoughLimits();
 
     /// @notice Reverts when a user tries to set a duration of 0
-    error ILimitedMinter_InvalidDuration();
+    error ILimitedMinterManager_InvalidDuration();
 
     /// @notice Reverts when limits are too high
-    error ILimitedMinter_LimitsTooHigh();
+    error ILimitedMinterManager_LimitsTooHigh();
 
+    /// @notice Reverts when an invalid index is used
+    error ILimitedMinterManager_InvalidIndex();
+
+    /// @notice Reverts when the index hint is incorrect
+    error ILimitedMinterManager_InvalidIndexHint();
     /// @notice Contains the mint parameters
     /// @param timestamp The timestamp of the last mint
     /// @param maxLimit The max limit of the minter
@@ -38,6 +51,17 @@ interface ILimitedMinter {
         uint256 duration;
         uint256 currentLimit;
     }
+
+    /// @notice Get the total number of minters
+    function getMinterCount() external view returns (uint256);
+
+    /// @notice Retrieve the address of a minter by index
+    /// @param _index The index of the minter
+    function getMinterByIndex(uint256 _index) external view returns (address);
+
+    /// @notice Retrieve the minter configuration
+    /// @param _minter The address of the minter
+    function getMinterConfig(address _minter) external view returns (MinterConfig memory);
 
     /// @notice Returns the max limit of a minter
     /// @param _minter The minter we are viewing the limits of
