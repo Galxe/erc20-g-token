@@ -17,6 +17,7 @@ contract TokenVesting is Ownable2Step {
     error InvalidToken();
     error InvalidDuration();
     error InvalidNumVestings();
+    error InvalidFinalTime();
     error NoTokenReleasable();
     error InvalidRecoverTokenAddress();
     error FailedToSendEther();
@@ -48,6 +49,9 @@ contract TokenVesting is Ownable2Step {
         if (_token == address(0)) revert InvalidToken();
         if (_duration == 0) revert InvalidDuration();
         if (_numVestings == 0) revert InvalidNumVestings();
+        if (_start + _duration * _numVestings <= block.timestamp) {
+            revert InvalidFinalTime();
+        }
 
         token = IERC20(_token);
         start = _start;

@@ -66,6 +66,9 @@ describe("Vesting", function () {
             await expect(VestingFactory.deploy(
                 deployer.address, tokenAddress, latestTime, 100, 0))
                 .to.be.rejectedWith("InvalidNumVestings");
+            await expect(VestingFactory.deploy(
+                deployer.address, tokenAddress, 0, 100, 1))
+                .to.be.rejectedWith("InvalidFinalTime");
             // overflow
             await expect(VestingFactory.deploy(
                 deployer.address, tokenAddress, 0,

@@ -17,14 +17,10 @@ contract TokenUpgrader is Ownable2Step, Pausable {
     error Uninitialized();
     error AlreadyInitialized();
 
-    /// @dev The address to which the old tokens are sent to burn
-    address public constant DEAD_ADDRESS = address(0xdead);
-    /// @notice The ratio of new tokens to old tokens
-    uint256 public constant SPLIT_RATIO = 60;
-
     IERC20 public oldToken;
     IERC20 public newToken;
     bool public initialized;
+    uint256 public constant SPLIT_RATIO = 60;
 
     constructor(address initialAdmin) Ownable(initialAdmin) {}
 
@@ -68,7 +64,7 @@ contract TokenUpgrader is Ownable2Step, Pausable {
     /// @param amount The amount of old tokens to upgrade.
     function upgradeToken(uint256 amount) external onlyInitialized whenNotPaused returns (bool) {
         // compatible with unburnable tokens
-        oldToken.safeTransferFrom(msg.sender, DEAD_ADDRESS, amount);
+        oldToken.safeTransferFrom(msg.sender, address(0xdead), amount);
         newToken.safeTransfer(msg.sender, amount * SPLIT_RATIO);
         return true;
     }
@@ -92,7 +88,7 @@ contract TokenUpgrader is Ownable2Step, Pausable {
         /* solhint-enable no-empty-blocks */
 
         // compatible with unburnable tokens
-        oldToken.safeTransferFrom(msg.sender, DEAD_ADDRESS, amount);
+        oldToken.safeTransferFrom(msg.sender, address(0), amount);
         newToken.safeTransfer(msg.sender, amount * SPLIT_RATIO);
         return true;
     }
