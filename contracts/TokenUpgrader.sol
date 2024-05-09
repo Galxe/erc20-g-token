@@ -64,7 +64,7 @@ contract TokenUpgrader is Ownable2Step, Pausable {
     /// @param amount The amount of old tokens to upgrade.
     function upgradeToken(uint256 amount) external onlyInitialized whenNotPaused returns (bool) {
         // compatible with unburnable tokens
-        oldToken.safeTransferFrom(msg.sender, address(0), amount);
+        oldToken.safeTransferFrom(msg.sender, address(0xdead), amount);
         newToken.safeTransfer(msg.sender, amount * SPLIT_RATIO);
         return true;
     }
