@@ -18,12 +18,13 @@ contract TokenUpgrader is Ownable2Step, Pausable {
     error AlreadyInitialized();
 
     /// @dev The address to which the old tokens are sent to burn
-    address constant DEAD_ADDRESS = address(0xdead);
+    address public constant DEAD_ADDRESS = address(0xdead);
+    /// @notice The ratio of new tokens to old tokens
+    uint256 public constant SPLIT_RATIO = 60;
 
     IERC20 public oldToken;
     IERC20 public newToken;
     bool public initialized;
-    uint256 public constant SPLIT_RATIO = 60;
 
     constructor(address initialAdmin) Ownable(initialAdmin) {}
 
