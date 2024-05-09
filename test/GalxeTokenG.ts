@@ -2,6 +2,7 @@ import { anyValue } from "@nomicfoundation/hardhat-chai-matchers/withArgs";
 import { loadFixture, time } from "@nomicfoundation/hardhat-toolbox/network-helpers";
 import { expect } from "chai";
 import { ethers } from "hardhat";
+
 import { math } from "../typechain-types/@openzeppelin/contracts/utils";
 import { generateRandomWallet } from "./helpers/wallet";
 
@@ -75,19 +76,20 @@ describe("GalxeTokenG", function () {
       await expect(g.connect(daoOwner).pause()).to.be.revertedWithCustomError(g, "OwnableUnauthorizedAccount");
       await g.pause();
       expect(await g.paused()).to.equal(true);
-      await g.unpause()
+      await g.unpause();
       expect(await g.paused()).to.equal(false);
-
     });
   });
 
   describe("name", function () {
     it("set name", async function () {
       const { g, deployer, daoOwner } = await loadFixture(basicFixture);
-      await expect(g.connect(daoOwner).setName("TokenG1")).to.be.revertedWithCustomError(g, "OwnableUnauthorizedAccount");
+      await expect(g.connect(daoOwner).setName("TokenG1")).to.be.revertedWithCustomError(
+        g,
+        "OwnableUnauthorizedAccount",
+      );
       await g.setName("TokenG1");
       expect(await g.name()).to.equal("TokenG1");
-
     });
   });
 
@@ -191,17 +193,22 @@ describe("GalxeTokenG", function () {
   describe("setMinterLimit", function () {
     it("limits too high", async function () {
       const { g, deployer, bridge1 } = await loadFixture(basicFixture);
-      await expect(g.connect(deployer).setMinterLimit(bridge1.address, ethers.MaxUint256, 10)).to.be.revertedWithCustomError(g, "ILimitedMinterManager_LimitsTooHigh");
+      await expect(
+        g.connect(deployer).setMinterLimit(bridge1.address, ethers.MaxUint256, 10),
+      ).to.be.revertedWithCustomError(g, "ILimitedMinterManager_LimitsTooHigh");
     });
 
     it("duration is zero", async function () {
       const { g, deployer, bridge1 } = await loadFixture(basicFixture);
-      await expect(g.connect(deployer).setMinterLimit(bridge1.address, 100, 0)).to.be.revertedWithCustomError(g, "ILimitedMinterManager_InvalidDuration");
+      await expect(g.connect(deployer).setMinterLimit(bridge1.address, 100, 0)).to.be.revertedWithCustomError(
+        g,
+        "ILimitedMinterManager_InvalidDuration",
+      );
     });
 
     it("set the minter", async function () {
       const { g, deployer, bridge1 } = await loadFixture(basicFixture);
-      await g.connect(deployer).setMinterLimit(bridge1.address, 100, 10)
+      await g.connect(deployer).setMinterLimit(bridge1.address, 100, 10);
       const minterCfg = await g.getMinterConfig(bridge1.address);
       expect(minterCfg.maxLimit).to.be.eq(100);
       expect(minterCfg.duration).to.be.eq(10);
@@ -211,14 +218,14 @@ describe("GalxeTokenG", function () {
     it("increase limit", async function () {
       // first set
       const { g, deployer, bridge1, otherAccount } = await loadFixture(basicFixture);
-      await g.connect(deployer).setMinterLimit(bridge1.address, 100, 10)
+      await g.connect(deployer).setMinterLimit(bridge1.address, 100, 10);
       let minterCfg = await g.getMinterConfig(bridge1.address);
       expect(minterCfg.maxLimit).to.be.eq(100);
       expect(minterCfg.duration).to.be.eq(10);
       expect(minterCfg.currentLimit).to.be.eq(100);
 
       // no mint increase limit
-      await g.connect(deployer).setMinterLimit(bridge1.address, 200, 10)
+      await g.connect(deployer).setMinterLimit(bridge1.address, 200, 10);
       minterCfg = await g.getMinterConfig(bridge1.address);
       expect(minterCfg.maxLimit).to.be.eq(200);
       expect(minterCfg.duration).to.be.eq(10);
@@ -227,7 +234,7 @@ describe("GalxeTokenG", function () {
       // increase limit after mint 100 and 2 seconds passed
       await g.connect(bridge1).mint(otherAccount.address, 100);
       await time.increase(2);
-      await g.connect(deployer).setMinterLimit(bridge1.address, 300, 10)
+      await g.connect(deployer).setMinterLimit(bridge1.address, 300, 10);
       minterCfg = await g.getMinterConfig(bridge1.address);
       expect(minterCfg.maxLimit).to.be.eq(300);
       expect(minterCfg.duration).to.be.eq(10);
@@ -235,7 +242,7 @@ describe("GalxeTokenG", function () {
 
       // increase limit after mint 100 and 9 seconds passed
       await time.increase(8);
-      await g.connect(deployer).setMinterLimit(bridge1.address, 400, 10)
+      await g.connect(deployer).setMinterLimit(bridge1.address, 400, 10);
       minterCfg = await g.getMinterConfig(bridge1.address);
       expect(minterCfg.maxLimit).to.be.eq(400);
       expect(minterCfg.duration).to.be.eq(10);
@@ -245,7 +252,7 @@ describe("GalxeTokenG", function () {
     it("decrease limit", async function () {
       // first set
       const { g, deployer, bridge1, otherAccount } = await loadFixture(basicFixture);
-      await g.connect(deployer).setMinterLimit(bridge1.address, 300, 10)
+      await g.connect(deployer).setMinterLimit(bridge1.address, 300, 10);
       let minterCfg = await g.getMinterConfig(bridge1.address);
       expect(minterCfg.maxLimit).to.be.eq(300);
       expect(minterCfg.duration).to.be.eq(10);
@@ -261,7 +268,7 @@ describe("GalxeTokenG", function () {
       // decrease limit after mint 100 and 2 seconds passed
       await g.connect(bridge1).mint(otherAccount.address, 100);
       await time.increase(2);
-      await g.connect(deployer).setMinterLimit(bridge1.address, 20, 10)
+      await g.connect(deployer).setMinterLimit(bridge1.address, 20, 10);
       minterCfg = await g.getMinterConfig(bridge1.address);
       expect(minterCfg.maxLimit).to.be.eq(20);
       expect(minterCfg.duration).to.be.eq(10);
@@ -277,12 +284,12 @@ describe("GalxeTokenG", function () {
 
     it("set limit and no use", async function () {
       const { g, deployer, bridge1 } = await loadFixture(basicFixture);
-      await g.connect(deployer).setMinterLimit(bridge1.address, 300, 10)
+      await g.connect(deployer).setMinterLimit(bridge1.address, 300, 10);
     });
 
     it("mint 100 and 2 seconds passed", async function () {
       const { g, deployer, bridge1 } = await loadFixture(basicFixture);
-      await g.connect(deployer).setMinterLimit(bridge1.address, 300, 10)
+      await g.connect(deployer).setMinterLimit(bridge1.address, 300, 10);
 
       await g.connect(bridge1).mint(bridge1.address, 100);
       await time.increase(2);
@@ -291,7 +298,7 @@ describe("GalxeTokenG", function () {
 
     it("mint 100 and 9 seconds passed", async function () {
       const { g, deployer, bridge1 } = await loadFixture(basicFixture);
-      await g.connect(deployer).setMinterLimit(bridge1.address, 300, 10)
+      await g.connect(deployer).setMinterLimit(bridge1.address, 300, 10);
 
       await g.connect(bridge1).mint(bridge1.address, 100);
       await time.increase(9);
@@ -300,7 +307,7 @@ describe("GalxeTokenG", function () {
 
     it("mint 100 and exceeding duration time", async function () {
       const { g, deployer, bridge1 } = await loadFixture(basicFixture);
-      await g.connect(deployer).setMinterLimit(bridge1.address, 300, 10)
+      await g.connect(deployer).setMinterLimit(bridge1.address, 300, 10);
 
       await g.connect(bridge1).mint(bridge1.address, 300);
       await time.increase(20);
@@ -312,7 +319,7 @@ describe("GalxeTokenG", function () {
     it("getMinterCount", async function () {
       const { g, deployer, bridge1 } = await loadFixture(basicFixture);
       expect(await g.getMinterCount()).to.be.eq(0);
-      await g.connect(deployer).setMinterLimit(bridge1.address, 300, 10)
+      await g.connect(deployer).setMinterLimit(bridge1.address, 300, 10);
       expect(await g.getMinterCount()).to.be.eq(1);
     });
   });
@@ -320,23 +327,28 @@ describe("GalxeTokenG", function () {
   describe("getMinterByIndex", function () {
     it("getMinterByIndex", async function () {
       const { TokenG, g, deployer, bridge1 } = await loadFixture(basicFixture);
-      await g.connect(deployer).setMinterLimit(bridge1.address, 300, 10)
+      await g.connect(deployer).setMinterLimit(bridge1.address, 300, 10);
       expect(await g.getMinterByIndex(0)).to.be.eq(bridge1.address);
-      expect(await g.getMinterByIndex(1)).to.be.revertedWithCustomError(g, "ILimitedMinterManager_InvalidIndex");
+      await expect(g.getMinterByIndex(1)).to.be.revertedWithCustomError(TokenG, "ILimitedMinterManager_InvalidIndex");
     });
   });
 
   describe("removeMinterByIndexHint", function () {
     it("removeMinterByIndexHint", async function () {
-      const { g, deployer, bridge1 } = await loadFixture(basicFixture);
-      const user = await generateRandomWallet()
-      expect(await g.removeMinterByIndexHint(user, 0)).to.be.revertedWithCustomError(g, "ILimitedMinterManager_InvalidIndex");
-      await g.connect(deployer).setMinterLimit(bridge1.address, 300, 10)
-      expect(await g.removeMinterByIndexHint(user, 0)).to.be.revertedWithCustomError(g, "ILimitedMinterManager_InvalidIndexHint");
-      
+      const { TokenG, g, deployer, bridge1 } = await loadFixture(basicFixture);
+      const user = await generateRandomWallet();
+      await expect(g.removeMinterByIndexHint(user, 0)).to.be.revertedWithCustomError(
+        TokenG,
+        "ILimitedMinterManager_InvalidIndex",
+      );
+      await g.connect(deployer).setMinterLimit(bridge1.address, 300, 10);
+      await expect(g.removeMinterByIndexHint(user, 0)).to.be.revertedWithCustomError(
+        TokenG,
+        "ILimitedMinterManager_InvalidIndexHint",
+      );
+
       await g.removeMinterByIndexHint(bridge1, 0);
       expect(await g.getMinterCount()).to.be.eq(0);
     });
   });
-
 });
