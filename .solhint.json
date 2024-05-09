@@ -1,27 +1,16 @@
 {
   "extends": "solhint:recommended",
-  "plugins": [
-    "prettier"
-  ],
+  "plugins": ["prettier"],
   "rules": {
-    "code-complexity": [
-      "error",
-      10
-    ],
-    "compiler-version": [
-      "error",
-      ">=0.8.4"
-    ],
+    "code-complexity": ["error", 10],
+    "compiler-version": ["error", ">=0.8.4"],
     "func-visibility": [
       "error",
       {
         "ignoreConstructors": true
       }
     ],
-    "max-line-length": [
-      "error",
-      140
-    ],
+    "max-line-length": ["error", 140],
     "immutable-vars-naming": [
       "error",
       {
