@@ -51,8 +51,8 @@ contract TokenVesting is Ownable2Step {
 
         token = IERC20(_token);
         start = _start;
-        _duration = _duration;
-        _numVestings = _numVestings;
+        duration = _duration;
+        numVestings = _numVestings;
     }
 
     /// @notice Transfers vested tokens to owner.
