@@ -30,7 +30,7 @@ describe("GravityTokenG", function () {
       expect(await g.name()).to.equal("Gravity");
       expect(await g.symbol()).to.equal("G");
       expect(await g.decimals()).to.equal(18);
-      expect(await g.DOMAIN_SEPARATOR()).to.equal("0x3a37e77ce20b2666c16050e7cf0492d70aaf6da70920fd4e4a9f76a4cdebe9bc");
+      expect(await g.DOMAIN_SEPARATOR()).to.equal("0xf31cf31ad8efb52e511e6ae7e567efb9d220ede3b9a2fb77bef6094feef73f7d");
     });
   });
 
