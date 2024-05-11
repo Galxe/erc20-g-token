@@ -10,17 +10,17 @@ import { Ownable2Step, Ownable } from "@openzeppelin/contracts/access/Ownable2St
 
 import { LimitedMinterManager } from "./LimitedMinterManager.sol";
 
-/// @title Galxe G Token (ERC20) Contract
+/// @title Gravity G Token (ERC20) Contract
 /// @author Galxe Team
 /// @notice G token supports:
 /// - pausable transfers, minting and burning
 /// - ERC20Permit signatures for approvals
 /// - native cross-chain ERC20 by supporting limited minter management for bridges.
 /// @custom:security-contact security@galxe.com
-contract GalxeTokenG is ERC20, ERC20Burnable, ERC20Pausable, ERC20Permit, LimitedMinterManager, Ownable2Step {
+contract GravityTokenG is ERC20, ERC20Burnable, ERC20Pausable, ERC20Permit, LimitedMinterManager, Ownable2Step {
     string private _newName;
 
-    constructor(address initialAdmin) ERC20("Galxe", "G") ERC20Permit("Galxe G Token") Ownable(initialAdmin) {
+    constructor(address initialAdmin) ERC20("Gravity", "G") ERC20Permit("G - Gravity") Ownable(initialAdmin) {
         _newName = super.name();
     }
 

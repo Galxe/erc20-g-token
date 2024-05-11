@@ -18,7 +18,7 @@ describe("TokenUpgrader", function () {
 
     const tokenUpgraderF = await ethers.getContractFactory("TokenUpgrader");
     const tokenUpgrader = await tokenUpgraderF.deploy(deployer);
-    const tokenGF = await ethers.getContractFactory("GalxeTokenG");
+    const tokenGF = await ethers.getContractFactory("GravityTokenG");
     const tokenG = await tokenGF.deploy(deployer);
     const oldToken = await tokenGF.deploy(deployer);
 
@@ -138,7 +138,7 @@ describe("TokenUpgrader", function () {
   describe("upgradeTokenByPermit", function () {
     it("uninitialized", async function () {
       const { tokenUpgrader, tokenG, oldToken, daoOwner } = await loadFixture(basicFixture);
-      const signature = await getPermitSignature(daoOwner, oldToken, await tokenUpgrader.getAddress(), 1000, 1000,{name:"Galxe G Token"});
+      const signature = await getPermitSignature(daoOwner, oldToken, await tokenUpgrader.getAddress(), 1000, 1000,{name:"G - Gravity"});
       await expect(
         tokenUpgrader.upgradeTokenByPermit(0, 0, signature.v, signature.r, signature.s),
       ).to.be.revertedWithCustomError(tokenUpgrader, "Uninitialized");
@@ -148,7 +148,7 @@ describe("TokenUpgrader", function () {
       const { tokenUpgrader, tokenG, oldToken, daoOwner } = await loadFixture(basicFixture);
       await tokenUpgrader.initialize(oldToken, tokenG);
       await tokenUpgrader.pause();
-      const signature = await getPermitSignature(daoOwner, oldToken, await tokenUpgrader.getAddress(), 1000, 1000,{name:"Galxe G Token"});
+      const signature = await getPermitSignature(daoOwner, oldToken, await tokenUpgrader.getAddress(), 1000, 1000,{name:"G - Gravity"});
       await expect(
         tokenUpgrader.upgradeTokenByPermit(0, 0, signature.v, signature.r, signature.s),
       ).to.be.revertedWithCustomError(tokenUpgrader, "EnforcedPause");
@@ -158,7 +158,7 @@ describe("TokenUpgrader", function () {
       const { tokenUpgrader, tokenG, oldToken } = await loadFixture(basicFixture);
       await tokenUpgrader.initialize(oldToken, tokenG);
       const user1 = await generateRandomWallet();
-      const signature = await getPermitSignature(user1, oldToken, await tokenUpgrader.getAddress(), 1000, 0,{name:"Galxe G Token"});
+      const signature = await getPermitSignature(user1, oldToken, await tokenUpgrader.getAddress(), 1000, 0,{name:"G - Gravity"});
       await oldToken.transfer(user1.address, 1000);
       await expect(
         tokenUpgrader.connect(user1).upgradeTokenByPermit(1000, 0, signature.v, signature.r, signature.s),
@@ -170,7 +170,7 @@ describe("TokenUpgrader", function () {
       await tokenUpgrader.initialize(oldToken, tokenG);
       const user1 = await generateRandomWallet();
       const deadline = (await time.latest()) + 1000;
-      const signature = await getPermitSignature(user1, oldToken, await tokenUpgrader.getAddress(), 1000, deadline,{name:"Galxe G Token"});
+      const signature = await getPermitSignature(user1, oldToken, await tokenUpgrader.getAddress(), 1000, deadline,{name:"G - Gravity"});
       await oldToken.transfer(user1.address, 1000);
       await tokenUpgrader.connect(user1).upgradeTokenByPermit(1000, deadline, signature.v, signature.r, signature.s);
       // await expect(tokenUpgrader.upgradeToken(1000))

@@ -6,14 +6,14 @@ import { ethers } from "hardhat";
 import { math } from "../typechain-types/@openzeppelin/contracts/utils";
 import { generateRandomWallet } from "./helpers/wallet";
 
-describe("GalxeTokenG", function () {
+describe("GravityTokenG", function () {
   // We use loadFixture to run this setup once, snapshot that state,
   // and reset Hardhat Network to that snapshot in every test.
   async function basicFixture() {
     // Contracts are deployed using the first signer/account by default
     const [deployer, daoOwner, bridge1, bridge2, otherAccount] = await ethers.getSigners();
 
-    const TokenG = await ethers.getContractFactory("GalxeTokenG");
+    const TokenG = await ethers.getContractFactory("GravityTokenG");
     const g = await TokenG.deploy(deployer);
 
     return { TokenG, g, deployer, daoOwner, bridge1, bridge2, otherAccount };
@@ -27,10 +27,10 @@ describe("GalxeTokenG", function () {
 
     it("basic parameters should be set correctly", async function () {
       const { g, deployer } = await loadFixture(basicFixture);
-      expect(await g.name()).to.equal("Galxe");
+      expect(await g.name()).to.equal("Gravity");
       expect(await g.symbol()).to.equal("G");
       expect(await g.decimals()).to.equal(18);
-      expect(await g.DOMAIN_SEPARATOR()).to.equal("0xb246dccf02b4f765668b933c581678a54657aee1b6220eb6d057f6139948def8");
+      expect(await g.DOMAIN_SEPARATOR()).to.equal("0x3a37e77ce20b2666c16050e7cf0492d70aaf6da70920fd4e4a9f76a4cdebe9bc");
     });
   });
 

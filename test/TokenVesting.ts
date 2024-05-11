@@ -4,13 +4,13 @@ import { expect } from "chai";
 import { BigNumberish, toBigInt } from "ethers";
 import { ethers } from "hardhat";
 
-import { GalxeTokenG } from "../typechain-types";
+import { GravityTokenG } from "../typechain-types";
 import { generateRandomWallet } from "./helpers/wallet";
 
 describe("Vesting", function () {
   async function deployVestingFixture() {
     const [deployer, owner, acc1, acc2, acc3] = await ethers.getSigners();
-    const TokenFactory = await ethers.getContractFactory("GalxeTokenG");
+    const TokenFactory = await ethers.getContractFactory("GravityTokenG");
     const token = await TokenFactory.deploy(owner.address);
     const twoBillionToken = toBigInt("2000000000000000000000000000");
     await token.connect(owner).ownerMint(deployer.address, twoBillionToken);
@@ -20,7 +20,7 @@ describe("Vesting", function () {
   async function deployVesting(
     deployer: SignerWithAddress,
     beneficiary: string,
-    token: GalxeTokenG,
+    token: GravityTokenG,
     start: BigNumberish,
     duration: BigNumberish,
     count: BigNumberish,
@@ -221,7 +221,7 @@ describe("Vesting", function () {
       const beneficiary = await generateRandomWallet();
       const vesting = await deployVesting(deployer, beneficiary.address, token, startAt, duration, nVest, 1000);
 
-      const otherTokenFactory = await ethers.getContractFactory("GalxeTokenG");
+      const otherTokenFactory = await ethers.getContractFactory("GravityTokenG");
       const otherToken = await otherTokenFactory.deploy(deployer.address);
       await otherToken.connect(deployer).ownerMint(vesting, 1000);
 

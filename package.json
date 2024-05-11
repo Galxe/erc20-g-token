@@ -1,7 +1,7 @@
 {
-  "name": "galxe-erc20-g-token",
+  "name": "gravity-erc20-g-token",
   "version": "1.0.0",
-  "description": "Galxe ERC20 Token G",
+  "description": "Gravity ERC20 Token G",
   "scripts": {
     "compile": "hardhat compile",
     "lint": "hardhat check",
@@ -10,9 +10,9 @@
     "test": "hardhat test --parallel",
     "test:report-gas": "REPORT_GAS=true hardhat test",
     "coverage": "hardhat coverage",
-    "deploy:local": "hardhat ignition deploy ignition/modules/GalxeTokenG.ts --network localhost --strategy create2"
+    "deploy:local": "hardhat ignition deploy ignition/modules/GravityTokenG.ts --network localhost --strategy create2"
   },
-  "author": "Galxe team",
+  "author": "Gravity team",
   "license": "MIT",
   "devDependencies": {
     "@nomicfoundation/hardhat-chai-matchers": "^2.0.6",

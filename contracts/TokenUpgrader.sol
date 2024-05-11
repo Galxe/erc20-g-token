@@ -9,7 +9,7 @@ import { SafeERC20 } from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.s
 import { IERC20Permit } from "@openzeppelin/contracts/token/ERC20/extensions/IERC20Permit.sol";
 
 /// @title TokenUpgrader Contract for upgrading old tokens to new tokens
-/// @author Galxe Team
+/// @author Gravity Team
 /// @notice Customized for upgrading old tokens to new tokens, compatible with unburnable and no-permit tokens
 contract TokenUpgrader is Ownable2Step, Pausable {
     using SafeERC20 for IERC20;
