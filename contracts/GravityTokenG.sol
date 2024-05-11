@@ -20,7 +20,7 @@ import { LimitedMinterManager } from "./LimitedMinterManager.sol";
 contract GravityTokenG is ERC20, ERC20Burnable, ERC20Pausable, ERC20Permit, LimitedMinterManager, Ownable2Step {
     string private _newName;
 
-    constructor(address initialAdmin) ERC20("Gravity", "G") ERC20Permit("G - Gravity") Ownable(initialAdmin) {
+    constructor(address initialAdmin) ERC20("Gravity", "G") ERC20Permit("Gravity") Ownable(initialAdmin) {
         _newName = super.name();
     }
 
