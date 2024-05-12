@@ -92,7 +92,7 @@ contract TokenVesting is Ownable2Step {
     /// @param tokenAmount amount of token to recover
     function recoverOtherERC20(address tokenAddress, uint256 tokenAmount) external onlyOwner {
         if (tokenAddress == address(token)) revert InvalidRecoverTokenAddress();
-        IERC20(tokenAddress).transfer(owner(), tokenAmount);
+        IERC20(tokenAddress).safeTransfer(owner(), tokenAmount);
     }
 
     /// @notice Recover native token from contract

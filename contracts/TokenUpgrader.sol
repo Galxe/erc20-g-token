@@ -16,6 +16,8 @@ contract TokenUpgrader is Ownable2Step, Pausable {
 
     error Uninitialized();
     error AlreadyInitialized();
+    error FailedToSendEther();
+    error InvalidReceiverAddress();
 
     /// @dev The address to which the old tokens are sent to burn
     address public constant DEAD_ADDRESS = address(0xdead);
@@ -41,6 +43,9 @@ contract TokenUpgrader is Ownable2Step, Pausable {
     /// @param to the receiver of the token
     /// @param amount the amount of token to withdraw
     function withdrawERC20Token(address token, address to, uint256 amount) external onlyOwner {
+        if (to == address(0)) {
+            revert InvalidReceiverAddress();
+        }
         IERC20(token).safeTransfer(to, amount);
     }
 
@@ -48,7 +53,14 @@ contract TokenUpgrader is Ownable2Step, Pausable {
     /// @param to address to receive the ETH
     /// @param amount amount of ETH to withdraw
     function withdrawETH(address to, uint256 amount) external onlyOwner {
-        payable(to).transfer(amount);
+        if (to == address(0)) {
+            revert InvalidReceiverAddress();
+        }
+        // use call to transfer native token
+        (bool sent, ) = to.call{ value: amount }("");
+        if (!sent) {
+            revert FailedToSendEther();
+        }
     }
 
     /// initialize the contract with the old and new token addresses.
