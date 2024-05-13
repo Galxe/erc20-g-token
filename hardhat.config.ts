@@ -1,17 +1,17 @@
 import "@nomicfoundation/hardhat-toolbox";
 import "@nomiclabs/hardhat-solhint";
-import { keccak256 } from "ethers";
 import { HardhatUserConfig } from "hardhat/config";
 import { vars } from "hardhat/config";
 
 // explorer api keys
 const ETHERSCAN_API_KEY = vars.get("ETHERSCAN_API_KEY");
+const BSCSCAN_API_KEY = vars.get("BSCSCAN_API_KEY");
+const BASESCAN_API_KEY = vars.get("BASESCAN_API_KEY");
 
 // deployer keys
-const DEPLOYER_PRIVATE_KEY = vars.get("DEPLOYER_PRIVATE_KEY");
+const DEPLOYER_PRIVATE_KEY = vars.get("GALXE_DEPLOYER_PRIVATE_KEY");
 const accounts = [DEPLOYER_PRIVATE_KEY];
 
-const salt = keccak256("Gravity G Token");
 const config: HardhatUserConfig = {
   solidity: {
     version: "0.8.24",
@@ -22,17 +22,20 @@ const config: HardhatUserConfig = {
       },
     },
   },
-  ignition: {
-    strategyConfig: {
-      create2: {
-        salt: salt,
-      },
-    },
-  },
+  // we don't directly use ignition, instead, they are used in scripts.
+  // ignition: {
+  //   strategyConfig: {
+  //     create2: {
+  //       salt: salt,
+  //     },
+  //   },
+  // },
   defaultNetwork: "hardhat",
   etherscan: {
     apiKey: {
       sepolia: ETHERSCAN_API_KEY,
+      bsc: BSCSCAN_API_KEY,
+      base: BASESCAN_API_KEY,
     },
   },
   networks: {
