@@ -57,7 +57,7 @@ const config: HardhatUserConfig = {
       accounts,
     },
     mainnet: {
-      url: "https://cloudflare-eth.com",
+      url: "https://rpc.ankr.com/eth",
       chainId: 1,
       accounts,
     },
