@@ -47,7 +47,7 @@ async function main() {
   }
   const config = configs[network];
   console.log(`(${network}) Deploying to ${network}...`);
-  console.log(`(${network}) init_supply: ${config.init_supply}`)
+  console.log(`(${network}) init_supply: ${config.init_supply}`);
   const { g } = await hre.ignition.deploy(GravityGTokenModule, {
     strategy: "create2",
     strategyConfig: {

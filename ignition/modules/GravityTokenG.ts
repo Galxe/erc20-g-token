@@ -7,7 +7,7 @@ const GravityTokenGModule = buildModule("GravityTokenG", (m) => {
 
   const g = m.contract("GravityTokenG", [deployer]);
   // mint initial supply to multisig
-  m.call(g, "ownerMint", [multiSigAddr, initSupply])
+  m.call(g, "ownerMint", [multiSigAddr, initSupply]);
   m.call(g, "transferOwnership", [multiSigAddr]);
   return { g };
 });

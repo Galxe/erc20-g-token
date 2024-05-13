@@ -64,8 +64,8 @@ const config: HardhatUserConfig = {
     base: {
       url: "https://mainnet.base.org",
       chainId: 8453,
-      accounts
-    }
+      accounts,
+    },
   },
 };
 
