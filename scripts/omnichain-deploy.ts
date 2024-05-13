@@ -9,7 +9,7 @@ const salt = keccak256(toUtf8Bytes("Gravity G Token"));
 // Galxe ERC20 Token deployer
 const deployer = "0x397b9dAb337f286f169C5bcF2810Aea2Dce1ee13";
 
-const decimals = BigInt(10) ^ BigInt(18);
+const decimals = BigInt(10) ** BigInt(18);
 
 interface ChainConfig {
   deployer: string;
@@ -46,7 +46,8 @@ async function main() {
     throw new Error(`Chain config for ${network} not found`);
   }
   const config = configs[network];
-  console.log(`Deploying to ${network}...`);
+  console.log(`(${network}) Deploying to ${network}...`);
+  console.log(`(${network}) init_supply: ${config.init_supply}`)
   const { g } = await hre.ignition.deploy(GravityGTokenModule, {
     strategy: "create2",
     strategyConfig: {
