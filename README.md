@@ -22,15 +22,17 @@ The contracts have deployed at the following address:
 Address: `0x9C7BEBa8F6eF6643aBd725e45a4E8387eF260649`.
 
 Networks:
-+ [Mainnet](https://etherscan.io/address/0x9C7BEBa8F6eF6643aBd725e45a4E8387eF260649#code)
-+ [BSC](https://bscscan.com/address/0x9C7BEBa8F6eF6643aBd725e45a4E8387eF260649#code)
-+ [Base](https://basescan.org//address/0x9C7BEBa8F6eF6643aBd725e45a4E8387eF260649#code)
-+ More to come
+
+- [Mainnet](https://etherscan.io/address/0x9C7BEBa8F6eF6643aBd725e45a4E8387eF260649#code)
+- [BSC](https://bscscan.com/address/0x9C7BEBa8F6eF6643aBd725e45a4E8387eF260649#code)
+- [Base](https://basescan.org//address/0x9C7BEBa8F6eF6643aBd725e45a4E8387eF260649#code)
+- More to come
 
 ### Token Upgrader
 
 Address: `0x249aC00402716b7bf6d6ED24531d7B4C10788942`.
 
 Only available on networks where the old GAL token is deployed:
-+ [Mainnet](https://etherscan.io/address/0x249aC00402716b7bf6d6ED24531d7B4C10788942#code)
-+ [BSC](https://bscscan.com/address/0x249aC00402716b7bf6d6ED24531d7B4C10788942#code)
+
+- [Mainnet](https://etherscan.io/address/0x249aC00402716b7bf6d6ED24531d7B4C10788942#code)
+- [BSC](https://bscscan.com/address/0x249aC00402716b7bf6d6ED24531d7B4C10788942#code)
