@@ -24,9 +24,18 @@ Address: `0x9C7BEBa8F6eF6643aBd725e45a4E8387eF260649`.
 Networks:
 
 - [Mainnet](https://etherscan.io/address/0x9C7BEBa8F6eF6643aBd725e45a4E8387eF260649#code)
+  - Owner: [Galxe multi-sig on mainnet](https://etherscan.io/address/0xbD6e434dB90FD8AD4E28d85C133AD34cA6fbfB6D)
+  - Initial supply: 10,000,000,000 G
 - [BSC](https://bscscan.com/address/0x9C7BEBa8F6eF6643aBd725e45a4E8387eF260649#code)
-- [Base](https://basescan.org//address/0x9C7BEBa8F6eF6643aBd725e45a4E8387eF260649#code)
+  - Owner: [Galxe multi-sig on bsc](https://bscscan.com/address/0xBB86C74ecCA362D007293EE8A2E24E9De0B9E558)
+  - Initial supply: 2,000,000,000 G
+- [Base](https://basescan.org/address/0x9C7BEBa8F6eF6643aBd725e45a4E8387eF260649#code)
+  - Owner: [Galxe multi-sig on base](https://basescan.org/address/0x08bDCC846D80d81eF6e058bB64228Ec58CA6726a)
+  - Initial supply: 0 G
+  - Note: We will bridge G tokens from other networks to Base network in the future.
 - More to come
+
+G tokens can be natively bridged to deployed network via our official bridge, using cross-chain message protocols.
 
 ### Token Upgrader
 
@@ -35,4 +44,6 @@ Address: `0x249aC00402716b7bf6d6ED24531d7B4C10788942`.
 Only available on networks where the old GAL token is deployed:
 
 - [Mainnet](https://etherscan.io/address/0x249aC00402716b7bf6d6ED24531d7B4C10788942#code)
+  - Owner: [Galxe multi-sig on mainnet](https://etherscan.io/address/0xbD6e434dB90FD8AD4E28d85C133AD34cA6fbfB6D)
 - [BSC](https://bscscan.com/address/0x249aC00402716b7bf6d6ED24531d7B4C10788942#code)
+  - Owner: [Galxe multi-sig on bsc](https://bscscan.com/address/0xBB86C74ecCA362D007293EE8A2E24E9De0B9E558)
