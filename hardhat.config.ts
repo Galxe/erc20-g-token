@@ -9,7 +9,7 @@ const BSCSCAN_API_KEY = vars.get("BSCSCAN_API_KEY", "");
 const BASESCAN_API_KEY = vars.get("BASESCAN_API_KEY", "");
 
 // deployer keys
-const DEPLOYER_PRIVATE_KEY = vars.get("GALXE_DEPLOYER_PRIVATE_KEY", "");
+const DEPLOYER_PRIVATE_KEY = vars.get("GALXE_DEPLOYER_PRIVATE_KEY", "ff".repeat(32));
 const accounts = [DEPLOYER_PRIVATE_KEY];
 
 const config: HardhatUserConfig = {
