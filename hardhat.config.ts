@@ -4,12 +4,12 @@ import { HardhatUserConfig } from "hardhat/config";
 import { vars } from "hardhat/config";
 
 // explorer api keys
-const ETHERSCAN_API_KEY = vars.get("ETHERSCAN_API_KEY");
-const BSCSCAN_API_KEY = vars.get("BSCSCAN_API_KEY");
-const BASESCAN_API_KEY = vars.get("BASESCAN_API_KEY");
+const ETHERSCAN_API_KEY = vars.get("ETHERSCAN_API_KEY", "");
+const BSCSCAN_API_KEY = vars.get("BSCSCAN_API_KEY", "");
+const BASESCAN_API_KEY = vars.get("BASESCAN_API_KEY", "");
 
 // deployer keys
-const DEPLOYER_PRIVATE_KEY = vars.get("GALXE_DEPLOYER_PRIVATE_KEY");
+const DEPLOYER_PRIVATE_KEY = vars.get("GALXE_DEPLOYER_PRIVATE_KEY", "");
 const accounts = [DEPLOYER_PRIVATE_KEY];
 
 const config: HardhatUserConfig = {
