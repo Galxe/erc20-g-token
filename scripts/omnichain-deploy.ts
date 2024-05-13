@@ -1,10 +1,10 @@
-// import { keccak256 } from "ethers";
+import { keccak256, toUtf8Bytes } from "ethers";
 import hre from "hardhat";
 
 import GravityGTokenModule from "../ignition/modules/GravityTokenG";
 import TokenUpgraderModule from "../ignition/modules/TokenUpgrader";
 
-const salt = "Gravity G Token";
+const salt = keccak256(toUtf8Bytes("Gravity G Token"));
 
 // Galxe ERC20 Token deployer
 const deployer = "0x397b9dAb337f286f169C5bcF2810Aea2Dce1ee13";
