@@ -10,7 +10,8 @@
     "test": "hardhat test --parallel",
     "test:report-gas": "REPORT_GAS=true hardhat test",
     "coverage": "hardhat coverage",
-    "deploy:local": "hardhat ignition deploy ignition/modules/GravityTokenG.ts --network localhost --strategy create2"
+    "deploy:local": "hardhat ignition deploy ignition/modules/GravityTokenG.ts --network localhost --strategy create2",
+    "deploy:sepolia": ""
   },
   "author": "Gravity team",
   "license": "MIT",
