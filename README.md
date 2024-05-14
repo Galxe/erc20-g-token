@@ -23,17 +23,19 @@ Token Name: Gravity
 
 Token Symbol: G
 
+Initial Total Supply: 12,000,000,000 G
+
 Contract Address: `0x9C7BEBa8F6eF6643aBd725e45a4E8387eF260649`
 
 Networks:
 
-- [Ethereum](https://etherscan.io/token/0x9C7BEBa8F6eF6643aBd725e45a4E8387eF260649)
+- [Ethereum](https://etherscan.io/token/0x9C7BEBa8F6eF6643aBd725e45a4E8387eF260649#code)
   - Owner: [Safe multi-sig on Ethereum](https://etherscan.io/address/0xbD6e434dB90FD8AD4E28d85C133AD34cA6fbfB6D)
   - Initial supply: 10,000,000,000 G
-- [BNB Chain](https://etherscan.io/token/0x9C7BEBa8F6eF6643aBd725e45a4E8387eF260649)
+- [BNB Chain](https://bscscan.com/token/0x9C7BEBa8F6eF6643aBd725e45a4E8387eF260649#code)
   - Owner: [Safe multi-sig on BNB Chain](https://bscscan.com/address/0xBB86C74ecCA362D007293EE8A2E24E9De0B9E558)
   - Initial supply: 2,000,000,000 G
-- [Base](https://etherscan.io/token/0x9C7BEBa8F6eF6643aBd725e45a4E8387eF260649)
+- [Base](https://basescan.org/token/0x9c7beba8f6ef6643abd725e45a4e8387ef260649#code)
   - Owner: [Safe multi-sig on Base](https://basescan.org/address/0x08bDCC846D80d81eF6e058bB64228Ec58CA6726a)
   - Initial supply: 0 G
   - Note: G tokens will be bridged from other networks to Base network.
