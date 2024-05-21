@@ -37,7 +37,18 @@ const config: HardhatUserConfig = {
       mainnet: ETHERSCAN_API_KEY,
       bsc: BSCSCAN_API_KEY,
       base: BASESCAN_API_KEY,
+      gravity: "",
     },
+    customChains: [
+      {
+        network: "gravity",
+        chainId: 1625,
+        urls: {
+          apiURL: "https://explorer.gravity.xyz/api",
+          browserURL: "https://explorer.gravity.xyz",
+        },
+      },
+    ],
   },
   networks: {
     hardhat: {},
@@ -64,6 +75,11 @@ const config: HardhatUserConfig = {
     base: {
       url: "https://mainnet.base.org",
       chainId: 8453,
+      accounts,
+    },
+    gravity: {
+      url: "https://rpc.gravity.xyz",
+      chainId: 1625,
       accounts,
     },
   },
