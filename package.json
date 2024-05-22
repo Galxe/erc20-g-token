@@ -15,7 +15,9 @@
     "deploy:mainnet": "HARDHAT_NETWORK=mainnet hardhat run scripts/omnichain-deploy.ts",
     "verify:mainnet": "npx hardhat ignition verify chain-1",
     "deploy:base": "HARDHAT_NETWORK=base hardhat run scripts/omnichain-deploy.ts",
-    "verify:base": "npx hardhat ignition verify chain-8453"
+    "verify:base": "npx hardhat ignition verify chain-8453",
+    "deploy:wG:gravity": "HARDHAT_NETWORK=gravity hardhat run scripts/wrappedG-deploy.ts",
+    "verify:wG:gravity": "npx hardhat ignition verify chain-1625"
   },
   "author": "Gravity team",
   "license": "MIT",
