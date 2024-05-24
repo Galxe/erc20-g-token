@@ -36,6 +36,11 @@ const configs: { [key: string]: ChainConfig } = {
     multi_sig: "0x08bDCC846D80d81eF6e058bB64228Ec58CA6726a",
     init_supply: 0n * decimals, // 0
   },
+  sepolia: {
+    deployer,
+    multi_sig: "0x1f33d43e0D61F052cC358620D15af3F203AC87FA",
+    init_supply: 12_000_000_000n * decimals, // 12 billion
+  },
 };
 
 async function main() {
