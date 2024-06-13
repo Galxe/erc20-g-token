@@ -5,8 +5,8 @@ const G_OFTModule = buildModule("G_OFT", (m) => {
   const ownerAddr = m.getParameter("owner");
 
   const gOFT = m.contract("G_OFT", [
-    "GravityTokenG", // name
-    "G", // symbol
+    "GravityTokenG (OFT)", // name
+    "G.oft", // symbol
     lzEndpointAddr, // lzEndpoint
     ownerAddr, // delegate
   ]);

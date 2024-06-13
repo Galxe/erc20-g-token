@@ -48,7 +48,6 @@ async function main() {
     },
     parameters: {
       G_OFTAdapter: {
-        deployer: config.deployer,
         g_token: config.g_token,
         lz_endpoint: config.lz_endpoint,
         owner: config.owner,
