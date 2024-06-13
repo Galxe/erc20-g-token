@@ -1,4 +1,5 @@
 {
   "GravityTokenG#GravityTokenG": "0x9C7BEBa8F6eF6643aBd725e45a4E8387eF260649",
-  "TokenUpgraderModule#TokenUpgrader": "0x249aC00402716b7bf6d6ED24531d7B4C10788942"
+  "TokenUpgraderModule#TokenUpgrader": "0x249aC00402716b7bf6d6ED24531d7B4C10788942",
+  "G_OFTAdapter#G_OFTAdapter": "0x71c066fd4949C44B2cB2f509E2CD2421FbD36bca"
 }
