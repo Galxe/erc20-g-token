@@ -27,7 +27,7 @@ const configs: { [key: string]: ChainConfig } = {
   polygon: {
     deployer: deployer,
     lz_endpoint: "0x1a44076050125825900e736c501f859c50fE728c",
-    owner: deployer,
+    owner: deployer, // we will manually update owner to multisig later
   },
 };
 
