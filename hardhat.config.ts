@@ -6,6 +6,7 @@ import { vars } from "hardhat/config";
 // explorer api keys
 const ETHERSCAN_API_KEY = vars.get("ETHERSCAN_API_KEY", "");
 const BSCSCAN_API_KEY = vars.get("BSCSCAN_API_KEY", "");
+const POLYGONSCAN_API_KEY = vars.get("POLYGONSCAN_API_KEY", "");
 const BASESCAN_API_KEY = vars.get("BASESCAN_API_KEY", "");
 
 // deployer keys
@@ -35,6 +36,8 @@ const config: HardhatUserConfig = {
     apiKey: {
       sepolia: ETHERSCAN_API_KEY,
       mainnet: ETHERSCAN_API_KEY,
+      polygonAmoy: POLYGONSCAN_API_KEY,
+      polygon: POLYGONSCAN_API_KEY,
       bsc: BSCSCAN_API_KEY,
       base: BASESCAN_API_KEY,
       gravity: "",
@@ -46,6 +49,14 @@ const config: HardhatUserConfig = {
         urls: {
           apiURL: "https://explorer.gravity.xyz/api",
           browserURL: "https://explorer.gravity.xyz",
+        },
+      },
+      {
+        network: "polygonAmoy",
+        chainId: 80002,
+        urls: {
+          apiURL: "https://api-amoy.polygonscan.com/api",
+          browserURL: "https://amoy.polygonscan.com",
         },
       },
     ],
@@ -60,6 +71,11 @@ const config: HardhatUserConfig = {
     bsc: {
       url: "https://bsc-dataseed1.binance.org",
       chainId: 56,
+      accounts,
+    },
+    polygonAmoy: {
+      url: "https://rpc.ankr.com/polygon_amoy",
+      chainId: 80002,
       accounts,
     },
     polygon: {

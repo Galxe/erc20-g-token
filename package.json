@@ -17,16 +17,23 @@
     "deploy:base": "HARDHAT_NETWORK=base hardhat run scripts/omnichain-deploy.ts",
     "verify:base": "npx hardhat ignition verify chain-8453",
     "deploy:wG:gravity": "HARDHAT_NETWORK=gravity hardhat run scripts/wrappedG-deploy.ts",
-    "verify:wG:gravity": "npx hardhat ignition verify chain-1625"
+    "verify:wG:gravity": "npx hardhat ignition verify chain-1625",
+    "deploy:oftAdapter:sepolia": "HARDHAT_NETWORK=sepolia hardhat run scripts/oftAdapter-deploy.ts",
+    "verify:oftAdapter:sepolia": "npx hardhat ignition verify chain-11155111",
+    "deploy:oft:polygonAmoy": "HARDHAT_NETWORK=polygonAmoy hardhat run scripts/oft-deploy.ts",
+    "verify:oft:polygonAmoy": "npx hardhat ignition verify chain-80002"
   },
   "author": "Gravity team",
   "license": "MIT",
   "devDependencies": {
     "@nomicfoundation/hardhat-chai-matchers": "^2.0.6",
     "@nomicfoundation/hardhat-ethers": "^3.0.5",
+    "@nomicfoundation/hardhat-ignition": "^0.15.4",
+    "@nomicfoundation/hardhat-ignition-ethers": "^0.15.4",
     "@nomicfoundation/hardhat-network-helpers": "^1.0.10",
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
     "@nomicfoundation/hardhat-verify": "^2.0.6",
+    "@nomicfoundation/ignition-core": "^0.15.4",
     "@nomiclabs/hardhat-solhint": "^3.0.1",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@typechain/ethers-v6": "^0.5.1",
@@ -47,6 +54,8 @@
     "typescript": "^5.4.5"
   },
   "dependencies": {
+    "@layerzerolabs/lz-evm-oapp-v2": "^2.3.21",
+    "@layerzerolabs/lz-evm-protocol-v2": "^2.3.21",
     "@nomicfoundation/solidity-analyzer": "^0.1.1",
     "@openzeppelin/contracts": "^5.0.2"
   }
