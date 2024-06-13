@@ -28,7 +28,7 @@ const configs: { [key: string]: ChainConfig } = {
     deployer: deployer,
     lz_endpoint: "0x1a44076050125825900e736c501f859c50fE728c",
     g_token: "0x9C7BEBa8F6eF6643aBd725e45a4E8387eF260649",
-    owner: "0xbd6e434db90fd8ad4e28d85c133ad34ca6fbfb6d", // multisig
+    owner: deployer, // we will manually update owner to multisig later
   },
 };
 
