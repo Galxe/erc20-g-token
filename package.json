@@ -26,6 +26,7 @@
     "verify:bsc": "npx hardhat ignition verify chain-56",
     "verify:gravity": "npx hardhat ignition verify chain-1625",
     "verify:base": "npx hardhat ignition verify chain-8453",
+    "verify:polygon": "npx hardhat ignition verify chain-137",
     "verify:polygonAmoy": "npx hardhat ignition verify chain-80002",
     "verify:sepolia": "npx hardhat ignition verify chain-11155111"
   },
