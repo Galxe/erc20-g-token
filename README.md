@@ -72,6 +72,7 @@ Security configurations:
 
 - [OFT Adapter](https://etherscan.io/address/0x71c066fd4949C44B2cB2f509E2CD2421FbD36bca) on Ethereum mainnet:
   `0x71c066fd4949C44B2cB2f509E2CD2421FbD36bca`
+  - Owner: [Safe multi-sig on Ethereum](https://etherscan.io/address/0xbD6e434dB90FD8AD4E28d85C133AD34cA6fbfB6D)
 - Ethereum -> Polygon
   - Confirmation required: 15
   - [LayerZero Labs](https://docs.layerzero.network/v2/developers/evm/technical-reference/dvn-addresses#layerzero-labs):
