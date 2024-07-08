@@ -44,14 +44,18 @@ G tokens can be natively bridged to deployed network via our official bridge, us
 
 ### Token Upgrader
 
-Address: `0x249aC00402716b7bf6d6ED24531d7B4C10788942`
-
 Only available on networks where the old GAL token is deployed:
 
 - [Ethereum](https://etherscan.io/address/0x249aC00402716b7bf6d6ED24531d7B4C10788942#code)
+  - Ethereum Address: `0x249aC00402716b7bf6d6ED24531d7B4C10788942`
   - Owner: [Safe multi-sig on Ethereum](https://etherscan.io/address/0xbD6e434dB90FD8AD4E28d85C133AD34cA6fbfB6D)
-- [BNB Chain](https://bscscan.com/address/0x249aC00402716b7bf6d6ED24531d7B4C10788942#code)
+- [BNB Chain](https://bscscan.com/address/0x35272c5e7236d1042Af432046706111e314d1577#code)
   - Owner: [Safe multi-sig on BNB Chain](https://bscscan.com/address/0xBB86C74ecCA362D007293EE8A2E24E9De0B9E558)
+  - BSC address: `0x35272c5e7236d1042Af432046706111e314d1577`
+  - Note: This upgrader is different from Ethereum's upgrader that burns GAL tokens by sending them to `0xdead` address.
+    Instead, it will send the BEP-20 GAL token to the owner of the upgrader contract. The owner will then send those
+    BEP-20 GAL tokens to the exchange that issued them, to burn and unlocked the original ERC-20 GAL tokens. Those
+    ERC-20 GAL tokens will then be burned by sending to the `0xdead` address on Ethereum.
 
 ### G Token OFT
 
