@@ -22,6 +22,7 @@
     "configure:oft:polygonAmoy": "HARDHAT_NETWORK=polygonAmoy hardhat run scripts/oft-configure.ts",
     "deploy:oft:polygon": "HARDHAT_NETWORK=polygon hardhat run scripts/oft-deploy.ts",
     "configure:oft:polygon": "HARDHAT_NETWORK=polygon hardhat run scripts/oft-configure.ts",
+    "deploy:bsc:upgrader": "HARDHAT_NETWORK=bsc hardhat run scripts/bsc-token-upgrader.ts",
     "verify:mainnet": "npx hardhat ignition verify chain-1",
     "verify:bsc": "npx hardhat ignition verify chain-56",
     "verify:gravity": "npx hardhat ignition verify chain-1625",
